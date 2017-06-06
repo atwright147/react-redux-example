@@ -1,15 +1,8 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: './index.html',
-    filename: 'index.html',
-    inject: 'body'
-});
-
 module.exports = {
     watch: true,
-    target: 'electron',
     entry: './app.js',
     devServer: {
         historyApiFallback: {
@@ -17,10 +10,8 @@ module.exports = {
         },
     },
     devtool: 'source-map',
-    // externals: nodeModules,
     output: {
-        path: __dirname + '/build',
-        publicPath: 'build/',
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
     module: {
@@ -49,5 +40,8 @@ module.exports = {
             }
         ]
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'index.html'),
+        inject: 'body'
+    })]
 }
