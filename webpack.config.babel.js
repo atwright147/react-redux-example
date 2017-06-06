@@ -1,14 +1,11 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const path = require('path');
-// const fs = require('fs');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-// FROM: http://jlongster.com/Backend-Apps-with-Webpack--Part-I#p28
-// const nodeModules = {};
-// fs.readdirSync('node_modules')
-//     .filter(item => ['.bin'].indexOf(item) === -1 )  // exclude the .bin folder
-//     .forEach((mod) => {
-//         nodeModules[mod] = 'commonjs ' + mod;
-//     });
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: './index.html',
+    filename: 'index.html',
+    inject: 'body'
+});
 
 module.exports = {
     watch: true,
@@ -52,11 +49,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: 'bundle.css',
-            disable: false,
-            allChunks: true
-        })
-    ]
+    plugins: [HtmlWebpackPluginConfig]
 }
