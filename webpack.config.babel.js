@@ -40,8 +40,10 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'index.html'),
-        inject: 'body'
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'index.html'),
+            inject: 'body'
+        })
+    ]
 }
